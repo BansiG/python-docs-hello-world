@@ -6,7 +6,7 @@ import urllib
 import pyodbc
 
 warnings.filterwarnings("ignore")
-def connect(server_name='scan-n-go-server.database.windows.net', companyID=None, branchID=None):
+def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', companyID=None, branchID=None):
     """
     input:
         server_name str
@@ -18,9 +18,10 @@ def connect(server_name='scan-n-go-server.database.windows.net', companyID=None,
     DB = {'servername': server_name, 'database': 'ScanNGoDB', 'username': 'sqluser', 'password': 'Azure@123'}
     conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER='
                           + DB['servername']
-                          + ';DATABASE=' + DB['database']
-                          + ';UID=' + DB['username']
-                          + ';PWD=' + DB['password'])
+                          + ';Database=' + DB['database']
+                          + ';Uid=' + DB['username']
+                          + ';Pwd=' + DB['password']
+                          + ';Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
     cursor = conn.cursor()
     result = "connnected"
     return result
