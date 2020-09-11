@@ -1,6 +1,6 @@
 import flask
 from flask import request, jsonify
-import database
+# import database
 import datetime
 
 app = flask.Flask(__name__)
@@ -27,23 +27,23 @@ def initialize():
 #         return "Table already initialized"
 #     return "Table created"
 
-@app.route("/api/getModel", methods=['GET'])
-def getModel():
+# @app.route("/api/getModel", methods=['GET'])
+# def getModel():
     
-    companyID = int(request.args.get('companyID'))
-    branchID = int(request.args.get('branchID'))
-    result = database.getModel(companyID, branchID)
-    return jsonify(result)
+#     companyID = int(request.args.get('companyID'))
+#     branchID = int(request.args.get('branchID'))
+#     result = database.getModel(companyID, branchID)
+#     return jsonify(result)
 
 
-@app.route("/api/saveModel", methods=['GET'])
-def saveModel():
+# @app.route("/api/saveModel", methods=['GET'])
+# def saveModel():
     
-    companyID = int(request.args.get('companyID'))
-    branchID = int(request.args.get('branchID'))
-    version = str(request.args.get('Version'))
-    result = database.insert_row(companyID, branchID, datetime.datetime.now(), version)
-    return jsonify(result)
+#     companyID = int(request.args.get('companyID'))
+#     branchID = int(request.args.get('branchID'))
+#     version = str(request.args.get('Version'))
+#     result = database.insert_row(companyID, branchID, datetime.datetime.now(), version)
+#     return jsonify(result)
 
 
 @app.errorhandler(404) 
