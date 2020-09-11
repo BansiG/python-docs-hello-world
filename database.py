@@ -16,7 +16,7 @@ def connect(server_name='scan-n-go-server.database.windows.net', companyID=None,
         version
     """
     DB = {'servername': server_name, 'database': 'ScanNGoDB', 'username': 'sqluser', 'password': 'Azure@123'}
-    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='
+    conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER='
                           + DB['servername']
                           + ';DATABASE=' + DB['database']
                           + ';UID=' + DB['username']
