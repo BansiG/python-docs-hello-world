@@ -9,7 +9,7 @@ app = flask.Flask(__name__)
 @app.route("/")
 def index():
     return "Hello !!!"
-
+"""
 @app.route("/api", methods=['GET'])
 def initialize():
     CompanyID = int(request.args.get('companyID'))
@@ -24,7 +24,6 @@ def connect():
     result = database.connect(CompanyID, BranchID)
     return jsonify(result)
 
-"""
 @app.route("/api/getModel", methods=['GET'])
 def getModel():
     
