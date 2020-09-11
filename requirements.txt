@@ -3,3 +3,4 @@ setuptools
 click==6.7
 Flask==1.0.2
 numpy
+pyodbc==4.0.21
