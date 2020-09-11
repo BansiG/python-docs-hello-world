@@ -1,7 +1,5 @@
 
-import pandas as pd
 import warnings
-from sqlalchemy import create_engine
 import urllib
 import mysql.connector
 from mysql.connector import errorcode
