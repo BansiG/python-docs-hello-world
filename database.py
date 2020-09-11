@@ -1,9 +1,9 @@
 
 import warnings
 import urllib
-import mysql.connector
-from mysql.connector import errorcode
-
+# import mysql.connector
+# from mysql.connector import errorcode
+import pymysql.cursor
 
 warnings.filterwarnings("ignore")
 def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', companyID=None, branchID=None):
@@ -19,15 +19,16 @@ def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', compan
       'host':'scan-n-go-server.database.windows.net',
       'user':'sqluser@server',
       'password':'Azure@123',
-      'database':'ScanNGoDB'
+      'database':'ScanNGoDB',
+      'cursorclass':pymysql.cursors.DictCursor
     }
     result="True"
     # Construct connection string
     try:
-      conn = mysql.connector.connect(**config)
+      conn = pymysql.connect(**config)
       
       print("Connection established")
-    except mysql.connector.Error as err:
+    except Exception as err:
       result="Failed"
       if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with the user name or password")
