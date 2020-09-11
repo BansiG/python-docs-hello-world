@@ -15,15 +15,18 @@ def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', compan
     output:
         version
     """
-    DB = {'servername': server_name, 'database': 'ScanNGoDB', 'username': 'sqluser', 'password': 'Azure@123'}
-    conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER='
-                          + DB['servername']
-                          + ';Database=' + DB['database']
-                          + ';Uid=' + DB['username']
-                          + ';Pwd=' + DB['password']
-                          + ';Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
-    cursor = conn.cursor()
-    result = "connnected"
+    try:
+        DB = {'servername': server_name, 'database': 'ScanNGoDB', 'username': 'sqluser', 'password': 'Azure@123'}
+        conn = pyodbc.connect('Driver={ODBC Driver 13 for SQL Server};Server='
+                              + DB['servername']
+                              + ';Database=' + DB['database']
+                              + ';Uid=' + DB['username']
+                              + ';Pwd=' + DB['password']
+                              )
+        cursor = conn.cursor()
+        result = "connnected"
+    except Exception as ex:
+        result = str(ex)
     return result
         # print('check input')
 
