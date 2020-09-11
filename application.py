@@ -21,7 +21,7 @@ def connect():
     CompanyID = int(request.args.get('c'))
     BranchID = int(request.args.get('b'))
     result = database.connect(CompanyID, BranchID)
-    return result
+    return json(result)
 
 
 @app.route("/api/getModel", methods=['GET'])
