@@ -6,6 +6,27 @@ import urllib
 import pyodbc
 
 warnings.filterwarnings("ignore")
+def connect(server_name='scan-n-go-server.database.windows.net', companyID=None, branchID=None):
+    """
+    input:
+        server_name str
+        table_name str
+        columns: default select all; str
+    output:
+        version
+    """
+    DB = {'servername': server_name, 'database': 'ScanNGoDB', 'username': 'sqluser', 'password': 'Azure@123'}
+    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='
+                          + DB['servername']
+                          + ';DATABASE=' + DB['database']
+                          + ';UID=' + DB['username']
+                          + ';PWD=' + DB['password'])
+    cursor = conn.cursor()
+    result = "connnected"
+    return result
+        # print('check input')
+
+
 
 def getModel(server_name='scan-n-go-server.database.windows.net', companyID=None, branchID=None):
     """

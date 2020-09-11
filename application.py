@@ -16,6 +16,14 @@ def initialize():
     BranchID = int(request.args.get('branchID'))
     return "sucessssssss"
 
+@app.route("/connect", methods=['GET'])
+def connect():
+    CompanyID = int(request.args.get('c'))
+    BranchID = int(request.args.get('b'))
+    result = database.connect(CompanyID, BranchID)
+    return result
+
+
 @app.route("/api/getModel", methods=['GET'])
 def getModel():
     
