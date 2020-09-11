@@ -24,7 +24,7 @@ def connect():
     result = database.connect(CompanyID, BranchID)
     return jsonify(result)
 
-
+"""
 @app.route("/api/getModel", methods=['GET'])
 def getModel():
     
@@ -42,7 +42,7 @@ def saveModel():
     version = str(request.args.get('Version'))
     result = database.insert_row(companyID, branchID, datetime.datetime.now(), version)
     return jsonify(result)
-
+"""
 
 @app.errorhandler(404) 
 def not_found(e): 
