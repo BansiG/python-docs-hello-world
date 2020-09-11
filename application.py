@@ -14,14 +14,15 @@ def index():
 def initialize():
     CompanyID = int(request.args.get('companyID'))
     BranchID = int(request.args.get('branchID'))
-    return "sucessssssss"
+    result = database.connect(CompanyID, BranchID)
+    return jsonify(result)
 
 @app.route("/connect", methods=['GET'])
 def connect():
     CompanyID = int(request.args.get('c'))
     BranchID = int(request.args.get('b'))
     result = database.connect(CompanyID, BranchID)
-    return json(result)
+    return jsonify(result)
 
 
 @app.route("/api/getModel", methods=['GET'])
