@@ -17,12 +17,13 @@ def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', compan
     """
     try:
         DB = {'servername': server_name, 'database': 'ScanNGoDB', 'username': 'sqluser', 'password': 'Azure@123'}
-        conn = pyodbc.connect('Driver={ODBC Driver 13 for SQL Server};Server='
-                              + DB['servername']
-                              + ';Database=' + DB['database']
-                              + ';Uid=' + DB['username']
-                              + ';Pwd=' + DB['password']
-                              )
+        conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER=scan-n-go-server.database.windows.net,1433', user='sqluser@server', password='Azure@123', database='ScanNGoDB')
+        # conn = pyodbc.connect('Driver={ODBC Driver 13 for SQL Server};Server='
+        #                       + DB['servername']
+        #                       + ';Database=' + DB['database']
+        #                       + ';Uid=' + DB['username']
+        #                       + ';Pwd=' + DB['password']
+        #                       )
         cursor = conn.cursor()
         result = "connnected"
     except Exception as ex:
@@ -31,7 +32,7 @@ def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', compan
         # print('check input')
 
 
-
+"""
 def getModel(server_name='scan-n-go-server.database.windows.net', companyID=None, branchID=None):
     """
     input:
@@ -98,3 +99,4 @@ def insert_row(server_name='scan-n-go-server.database.windows.net', table_name='
     except Exception as ex:
         print("Check again!!!")
         return "False"
+"""
