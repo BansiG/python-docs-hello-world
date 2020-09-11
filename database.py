@@ -7,14 +7,14 @@ import pyodbc
 
 warnings.filterwarnings("ignore")
 
-def get_sqldata(server_name='scan-n-go-server.database.windows.net', table_name='Records', columns='*', companyID=None, branchID=None):
+def getModel(server_name='scan-n-go-server.database.windows.net', companyID=None, branchID=None):
     """
     input:
         server_name str
         table_name str
         columns: default select all; str
     output:
-        pd.DataFrame
+        version
     """
     DB = {'servername': server_name, 'database': 'ScanNGoDB', 'username': 'sqluser', 'password': 'Azure@123'}
     conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='
@@ -23,6 +23,7 @@ def get_sqldata(server_name='scan-n-go-server.database.windows.net', table_name=
                           + ';UID=' + DB['username']
                           + ';PWD=' + DB['password'])
     cursor = conn.cursor()
+    result = "connnected"
     try:
         sql = """SELECT * from Records where (CompanyID = ? AND BranchID = ?)"""
         cursor.execute(sql, (companyID,branchID))
@@ -47,6 +48,7 @@ def get_sqldata(server_name='scan-n-go-server.database.windows.net', table_name=
 
         return Result
     except:
+        return result
         print('check input')
 
 
@@ -59,7 +61,7 @@ def insert_row(server_name='scan-n-go-server.database.windows.net', table_name='
                               + ';UID=' + DB['username']
                               + ';PWD=' + DB['password'])
         cursor = conn.cursor()
-        sql = """INSERT INTO 'Records'
+        sql = """INSERT INTO Records
                               ('CompanyID', 'BranchID', 'DateTime', 'ModelVersion') 
                               VALUES (?, ?, ?, ?);"""
         val = (companyID, branchID, DateTime, version)
