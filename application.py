@@ -14,8 +14,8 @@ def index():
 def initialize():
     CompanyID = int(request.args.get('companyID'))
     BranchID = int(request.args.get('branchID'))
-    result = "SUCESSSSSSS"
-    # result = database.connect(CompanyID, BranchID)
+    # result = "SUCESSSSSSS"
+    result = database.connect(CompanyID, BranchID)
     return jsonify(result)
 """
 @app.route("/connect", methods=['GET'])
