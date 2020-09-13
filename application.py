@@ -42,16 +42,19 @@ def getModel():
         result = str(ex)
     return jsonify(result)
 
-"""
-@app.route("/api/saveModel", methods=['GET'])
+
+@app.route("/saveModel", methods=['GET'])
 def saveModel():
     
     companyID = int(request.args.get('companyID'))
     branchID = int(request.args.get('branchID'))
     version = str(request.args.get('Version'))
-    result = database.insert_row(companyID, branchID, datetime.datetime.now(), version)
+    try:
+        result = database.saveModel(companyID, branchID, datetime.datetime.now(), version)
+    except Exception as ex:
+        result = str(ex)
     return jsonify(result)
-"""
+
 
 @app.errorhandler(404) 
 def not_found(e): 
