@@ -1,6 +1,7 @@
 import flask
 from flask import request, jsonify
 # import database
+import db2
 import datetime
 
 app = flask.Flask(__name__)
@@ -15,7 +16,11 @@ def initialize():
     CompanyID = int(request.args.get('companyID'))
     BranchID = int(request.args.get('branchID'))
     # result = "SUCESSSSSSS"
-    result = database.connect(CompanyID, BranchID)
+    try:
+        result = db2.connect(CompanyID, BranchID)
+    except Exception as ex:
+        result = "FAILUREEEEE"
+
     return jsonify(result)
 """
 @app.route("/connect", methods=['GET'])
