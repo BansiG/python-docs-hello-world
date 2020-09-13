@@ -1,9 +1,5 @@
-
 # import warnings
 import urllib
-# import mysql.connector
-# from mysql.connector import errorcode
-# import pymysql.cursor
 import pyodbc
 
 # warnings.filterwarnings("ignore")
@@ -53,8 +49,9 @@ def connect(server_name='tcp:server-india.database.windows.net,1433', companyID=
 
 def connect(server_name='tcp:server-india.database.windows.net,1433', companyID=None, branchID=None):
     result="True"
+    print("*********************************result-----------")
     try:
-        DB = {'servername': server_name, 'database': 'MyDatabase', 'username': 'bansi', 'password': 'Azure@123'}
+        DB = {'servername': server_name, 'database': 'MyDatabase', 'username': 'bansi@server', 'password': 'Azure@123'}
         # conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER=scan-n-go-server.database.windows.net,1433', user='sqluser@server', password='Azure@123', database='ScanNGoDB')
         conn = pyodbc.connect('Driver={ODBC Driver 13 for SQL Server};Server='
                               + DB['servername']
