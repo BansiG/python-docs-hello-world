@@ -1,25 +1,20 @@
 
-import warnings
+# import warnings
 import urllib
 # import mysql.connector
 # from mysql.connector import errorcode
-import pymysql.cursor
+# import pymysql.cursor
+import pyodbc
 
-warnings.filterwarnings("ignore")
-def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', companyID=None, branchID=None):
-    """
-    input:
-        server_name str
-        table_name str
-        columns: default select all; str
-    output:
-        version
-    """
+# warnings.filterwarnings("ignore")
+"""
+def connect(server_name='tcp:server-india.database.windows.net,1433', companyID=None, branchID=None):
+
     config = {
       'host':'scan-n-go-server.database.windows.net',
-      'user':'sqluser@server',
+      'user':'bansi@server',
       'password':'Azure@123',
-      'database':'ScanNGoDB',
+      'database':'MyDatabase',
       'cursorclass':pymysql.cursors.DictCursor
     }
     result="True"
@@ -51,6 +46,26 @@ def connect(server_name='tcp:scan-n-go-server.database.windows.net,1433', compan
     #     result = "connnected"
     # except Exception as ex:
     #     result = str(ex)
+    return result
+        # print('check input')
+
+"""
+
+def connect(server_name='tcp:server-india.database.windows.net,1433', companyID=None, branchID=None):
+    result="True"
+    try:
+        DB = {'servername': server_name, 'database': 'MyDatabase', 'username': 'bansi', 'password': 'Azure@123'}
+        # conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER=scan-n-go-server.database.windows.net,1433', user='sqluser@server', password='Azure@123', database='ScanNGoDB')
+        conn = pyodbc.connect('Driver={ODBC Driver 13 for SQL Server};Server='
+                              + DB['servername']
+                              + ';Database=' + DB['database']
+                              + ';Uid=' + DB['username']
+                              + ';Pwd=' + DB['password']
+                              )
+        cursor = conn.cursor()
+        result = "connnected"
+    except Exception as ex:
+        result = str(ex)
     return result
         # print('check input')
 
