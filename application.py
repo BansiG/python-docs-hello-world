@@ -50,7 +50,7 @@ def saveModel():
     branchID = int(request.args.get('branchID'))
     version = str(request.args.get('Version'))
     try:
-        result = database.saveModel(companyID, branchID, datetime.datetime.now(), version)
+        result = db2.saveModel(companyID, branchID, datetime.datetime.now(), version)
     except Exception as ex:
         result = str(ex)
     return jsonify(result)
