@@ -29,16 +29,20 @@ def connect():
     BranchID = int(request.args.get('b'))
     result = database.connect(CompanyID, BranchID)
     return jsonify(result)
+"""
 
-@app.route("/api/getModel", methods=['GET'])
+@app.route("/getModel", methods=['GET'])
 def getModel():
     
     companyID = int(request.args.get('companyID'))
     branchID = int(request.args.get('branchID'))
-    result = database.getModel(companyID, branchID)
+    try:
+        result = db2.getModel(companyID, branchID)
+    except Exception as ex:
+        result = str(ex)
     return jsonify(result)
 
-
+"""
 @app.route("/api/saveModel", methods=['GET'])
 def saveModel():
     
