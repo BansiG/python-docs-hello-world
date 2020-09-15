@@ -70,7 +70,7 @@ def getModel(companyID=None, branchID=None):
         result = str(ex)
     return result
 
-def saveModel(companyID=None, branchID=None, DateTime=None, version=None):
+def saveModel(companyID, branchID, DateTime, version):
     result="True"
     try:
         # DB = {'servername': 'tcp:server-india.database.windows.net,1433', 'database': 'MyDatabase', 'username': 'bansi@server', 'password': 'Azure@123'}
@@ -92,7 +92,7 @@ def saveModel(companyID=None, branchID=None, DateTime=None, version=None):
         conn = pyodbc.connect(con_string)
         cursor = conn.cursor()
         result = "connnected"
-        sql = """INSERT INTO Records ('CompanyID', 'BranchID',  'ModelVersion', 'DateTime') 
+        sql = """INSERT INTO Records ('CompanyID','BranchID','ModelVersion','DateTime') 
                               VALUES (?, ?, ?, ?);"""
         val = (companyID, branchID, version, DateTime)
         cursor.execute(sql, val)
